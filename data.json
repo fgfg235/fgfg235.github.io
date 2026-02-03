@@ -21,6 +21,28 @@
       "storeLink": "",
       "privacyLink": "tictacgroove/privacy.html",
       "termsLink": "tictacgroove/terms.html"
+    },
+    {
+      "id": "project-1770105040521",
+      "name": "(주)해모아DX 회사 홈페이지 제작",
+      "tag": "Wordpress",
+      "icon": "images/",
+      "description": "(주)해모아DX 회사 홈페이지입니다.\n반응형 기본 여건 충족, SSL 적용, SEO 적용 작업이 진행된 프로젝트 입니다.",
+      "link": "",
+      "storeLink": "https://haemoadx.co.kr/",
+      "privacyLink": "",
+      "termsLink": ""
+    },
+    {
+      "id": "project-1770105260668",
+      "name": "(주)NOVAMAX 홈페이지 제작",
+      "tag": "Wordpress",
+      "icon": "images/",
+      "description": "(주)NOVAMAX 회사 홈페이지입니다.\n반응형 기본 여건 충족, SSL 적용, SEO 적용 작업이 진행된 프로젝트 입니다.",
+      "link": "",
+      "storeLink": "https://novamax.co.kr/",
+      "privacyLink": "",
+      "termsLink": ""
     }
   ]
 }
