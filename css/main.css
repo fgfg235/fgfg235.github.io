@@ -140,6 +140,11 @@ nav .nav-links a:hover {
   border-radius: 14px;
   flex-shrink: 0;
   object-fit: cover;
+  background: linear-gradient(135deg, #6B3FA0, #007AFF);
+}
+
+.project-card .card-icon.error {
+  content: none;
 }
 
 .project-card .card-header h3 {
