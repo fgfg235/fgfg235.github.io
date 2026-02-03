@@ -11,89 +11,229 @@
     background: #fafafa;
     color: #333;
     min-height: 100vh;
+  }
+
+  /* Navigation */
+  nav {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 16px 24px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
   }
-  .hero {
-    text-align: center;
-    padding: 80px 20px 40px;
-    max-width: 600px;
-  }
-  .hero h1 {
-    font-size: 2.4em;
+  nav .logo {
+    font-size: 1.4em;
     font-weight: 700;
     color: #6B3FA0;
-    margin-bottom: 8px;
+    text-decoration: none;
   }
-  .hero p {
-    font-size: 1.1em;
+  nav .nav-links a {
+    color: #555;
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 0.95em;
+    font-weight: 500;
+  }
+  nav .nav-links a:hover { color: #6B3FA0; }
+
+  /* Hero / About */
+  .hero {
+    text-align: center;
+    padding: 80px 20px 48px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    font-size: 1.15em;
+    color: #6B3FA0;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .hero .bio {
+    font-size: 1em;
     color: #666;
-    line-height: 1.6;
+    line-height: 1.7;
   }
-  .apps {
+  .hero .links {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  .hero .links a {
+    color: #6B3FA0;
+    text-decoration: none;
+    font-size: 0.95em;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid #6B3FA0;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .hero .links a:hover {
+    background: #6B3FA0;
+    color: #fff;
+  }
+
+  /* Section */
+  .section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+  .section h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #6B3FA0;
+    display: inline-block;
+  }
+
+  /* Project Cards */
+  .projects {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 24px;
-    padding: 40px 20px;
-    max-width: 800px;
   }
-  .app-card {
+  .project-card {
     background: #fff;
     border-radius: 16px;
-    padding: 32px 28px;
-    width: 280px;
-    text-align: center;
+    padding: 28px 24px;
+    flex: 1 1 320px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     transition: transform 0.2s;
     text-decoration: none;
     color: inherit;
+    display: block;
   }
-  .app-card:hover { transform: translateY(-4px); }
-  .app-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 18px;
+  .project-card:hover { transform: translateY(-4px); }
+  .project-card .card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .project-card .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
     background: linear-gradient(135deg, #007AFF, #5856D6);
-    margin: 0 auto 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
+    font-size: 28px;
     color: #fff;
+    flex-shrink: 0;
   }
-  .app-card h2 { font-size: 1.2em; margin-bottom: 8px; }
-  .app-card p { font-size: 0.9em; color: #888; line-height: 1.5; }
+  .project-card .card-header h3 {
+    font-size: 1.15em;
+    color: #222;
+  }
+  .project-card .card-header .tag {
+    font-size: 0.75em;
+    color: #6B3FA0;
+    background: #f3edf9;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .project-card .card-desc {
+    font-size: 0.92em;
+    color: #666;
+    line-height: 1.6;
+  }
+  .project-card .card-links {
+    margin-top: 12px;
+    font-size: 0.85em;
+  }
+  .project-card .card-links a {
+    color: #6B3FA0;
+    text-decoration: none;
+    margin-right: 16px;
+  }
+  .project-card .card-links a:hover { text-decoration: underline; }
+
+  /* Footer */
   .footer {
-    margin-top: auto;
+    border-top: 1px solid #eee;
     padding: 32px 20px;
     text-align: center;
     font-size: 0.85em;
     color: #aaa;
+    max-width: 960px;
+    margin: 0 auto;
   }
   .footer a { color: #6B3FA0; text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 48px 20px 32px; }
+    .hero h1 { font-size: 1.7em; }
+    nav .nav-links a { margin-left: 16px; font-size: 0.85em; }
+  }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <h1>Weburple</h1>
-  <p>음악과 기술을 연결합니다</p>
-</div>
+<nav>
+  <a href="/" class="logo">Weburple</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-<div class="apps">
-  <a class="app-card" href="tictacgroove/">
-    <div class="app-icon">🎵</div>
-    <h2>TicTacGroove</h2>
-    <p>메트로놈 & 박자 연습 도구<br>Metronome & Rhythm Practice</p>
-  </a>
-</div>
+<section class="hero" id="about">
+  <h1>Your Name</h1>
+  <p class="subtitle">Developer</p>
+  <p class="bio">
+    여기에 간단한 자기소개를 작성하세요.<br>
+    음악과 기술을 연결하는 서비스를 만듭니다.
+  </p>
+  <div class="links">
+    <a href="https://github.com/fgfg235" target="_blank">GitHub</a>
+    <a href="mailto:weburple@gmail.com">Email</a>
+  </div>
+</section>
 
-<div class="footer">
+<section class="section" id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <a class="project-card" href="tictacgroove/">
+      <div class="card-header">
+        <div class="card-icon">🎵</div>
+        <div>
+          <h3>TicTacGroove</h3>
+          <span class="tag">iOS App</span>
+        </div>
+      </div>
+      <p class="card-desc">
+        메트로놈 & 박자 연습 도구. 음악 연습을 위한 직관적인 리듬 트레이닝 앱입니다.
+      </p>
+      <div class="card-links">
+        <a href="tictacgroove/">소개</a>
+        <a href="tictacgroove/privacy.html">개인정보처리방침</a>
+        <a href="tictacgroove/terms.html">이용약관</a>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
   <p>&copy; 2025 Weburple. All rights reserved.</p>
   <p><a href="mailto:weburple@gmail.com">weburple@gmail.com</a></p>
-</div>
+</footer>
 
 </body>
 </html>
