@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Weburple</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+<div class="header">
+  <h1>Weburple Admin</h1>
+  <a href="/" target="_blank">사이트 미리보기</a>
+</div>
+
+<div class="container">
+  <form id="adminForm">
+
+    <div class="card">
+      <h2>사이트 설정</h2>
+      <label>사이트 제목</label>
+      <input type="text" id="siteTitle">
+      <label>저작권 표시</label>
+      <input type="text" id="siteCopyright">
+    </div>
+
+    <div class="card">
+      <h2>프로필</h2>
+      <label>이름</label>
+      <input type="text" id="profileName">
+      <label>직함 / 한줄 소개</label>
+      <input type="text" id="profileSubtitle">
+      <label>자기소개 (줄바꿈 가능)</label>
+      <textarea id="profileBio" rows="4"></textarea>
+      <label>GitHub URL</label>
+      <input type="url" id="profileGithub">
+      <label>이메일</label>
+      <input type="email" id="profileEmail">
+    </div>
+
+    <div class="card">
+      <h2>프로젝트</h2>
+      <div id="projectList"></div>
+      <button type="button" class="btn btn-secondary" onclick="addProject()">+ 프로젝트 추가</button>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn btn-primary" onclick="save()">저장</button>
+      <button type="button" class="btn btn-deploy" onclick="saveAndDeploy()">저장 & 배포</button>
+    </div>
+
+  </form>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/admin/admin-client.js"></script>
+</body>
+</html>
