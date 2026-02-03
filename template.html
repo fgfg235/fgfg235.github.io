@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weburple</title>
+<title>{{site.title}}</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -175,7 +175,7 @@
 <body>
 
 <nav>
-  <a href="/" class="logo">Weburple</a>
+  <a href="/" class="logo">{{site.title}}</a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
@@ -184,47 +184,43 @@
 </nav>
 
 <section class="hero" id="about">
-  <h1>Kim Geonpyo</h1>
-  <p class="subtitle">Developer</p>
+  <h1>{{profile.name}}</h1>
+  <p class="subtitle">{{profile.subtitle}}</p>
   <p class="bio">
-    작은 아이디어를 기능으로 구현합니다.<br>
-    천천히, 그러나 끝까지 만듭니다.<br>
-    <br>
-    Implement small ideas into functionalities.<br>
-    Slowly, but steadily.
+    {{profile.bio}}
   </p>
   <div class="links">
-    <a href="https://github.com/fgfg235" target="_blank">GitHub</a>
-    <a href="mailto:fgfg235@gmail.com">Email</a>
+    {{#profile.github}}<a href="{{profile.github}}" target="_blank">GitHub</a>{{/profile.github}}
+    <a href="mailto:{{profile.email}}">Email</a>
   </div>
 </section>
 
 <section class="section" id="projects">
   <h2>Projects</h2>
   <div class="projects">
-
-    <a class="project-card" href="tictacgroove/">
+{{#projects}}
+    <a class="project-card" href="{{link}}">
       <div class="card-header">
-        <div class="card-icon">🎵</div>
+        <div class="card-icon">{{icon}}</div>
         <div>
-          <h3>TicTacGroove</h3>
-          <span class="tag">iOS App</span>
+          <h3>{{name}}</h3>
+          <span class="tag">{{tag}}</span>
         </div>
       </div>
-      <p class="card-desc">메트로놈 & 박자 연습 도구로서, 음악 연습을 위한 직관적인 리듬 훈련 앱입니다.</p>
+      <p class="card-desc">{{description}}</p>
       <div class="card-links">
-        <a href="tictacgroove/">소개</a>
-        <a href="tictacgroove/privacy.html">개인정보처리방침</a>
-        <a href="tictacgroove/terms.html">이용약관</a>
+        <a href="{{link}}">소개</a>
+        {{#privacyLink}}<a href="{{privacyLink}}">개인정보처리방침</a>{{/privacyLink}}
+        {{#termsLink}}<a href="{{termsLink}}">이용약관</a>{{/termsLink}}
       </div>
     </a>
-
+{{/projects}}
   </div>
 </section>
 
 <footer class="footer" id="contact">
-  <p>&copy; 2025 Weburple. All rights reserved.</p>
-  <p><a href="mailto:fgfg235@gmail.com">fgfg235@gmail.com</a></p>
+  <p>&copy; {{site.copyright}}</p>
+  <p><a href="mailto:{{profile.email}}">{{profile.email}}</a></p>
 </footer>
 
 </body>

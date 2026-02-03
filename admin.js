@@ -5,6 +5,7 @@ const { execSync } = require('child_process');
 
 const PORT = 3000;
 const DATA_FILE = path.join(__dirname, 'data.json');
+const TEMPLATE_FILE = path.join(__dirname, 'template.html');
 const INDEX_FILE = path.join(__dirname, 'index.html');
 
 function loadData() {
@@ -15,247 +16,56 @@ function saveData(data) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2) + '\n', 'utf-8');
 }
 
-// --- HTML Generator ---
+// --- Template Engine ---
 
 function generateIndexHtml(data) {
-  const { site, profile, projects } = data;
-  const bioHtml = profile.bio.split('\n').join('<br>\n    ');
+  let template = fs.readFileSync(TEMPLATE_FILE, 'utf-8');
 
-  const projectCards = projects.map(p => `
-    <a class="project-card" href="${p.link}">
-      <div class="card-header">
-        <div class="card-icon">${p.icon}</div>
-        <div>
-          <h3>${p.name}</h3>
-          <span class="tag">${p.tag}</span>
-        </div>
-      </div>
-      <p class="card-desc">${p.description}</p>
-      <div class="card-links">
-        <a href="${p.link}">소개</a>
-        ${p.privacyLink ? `<a href="${p.privacyLink}">개인정보처리방침</a>` : ''}
-        ${p.termsLink ? `<a href="${p.termsLink}">이용약관</a>` : ''}
-      </div>
-    </a>`).join('\n');
+  // Replace simple variables: {{site.title}}, {{profile.name}}, etc.
+  template = template.replace(/\{\{(\w+)\.(\w+)\}\}/g, (match, obj, key) => {
+    if (data[obj] && data[obj][key] !== undefined) {
+      let value = data[obj][key];
+      // Convert newlines to <br> for bio
+      if (obj === 'profile' && key === 'bio') {
+        value = value.split('\n').join('<br>\n    ');
+      }
+      return value;
+    }
+    return '';
+  });
 
-  return `<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${site.title}</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #fafafa;
-    color: #333;
-    min-height: 100vh;
-  }
-  nav {
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    padding: 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-  nav .logo {
-    font-size: 1.4em;
-    font-weight: 700;
-    color: #6B3FA0;
-    text-decoration: none;
-  }
-  nav .nav-links a {
-    color: #555;
-    text-decoration: none;
-    margin-left: 24px;
-    font-size: 0.95em;
-    font-weight: 500;
-  }
-  nav .nav-links a:hover { color: #6B3FA0; }
-  .hero {
-    text-align: center;
-    padding: 80px 20px 48px;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-  .hero h1 {
-    font-size: 2.2em;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 12px;
-  }
-  .hero .subtitle {
-    font-size: 1.15em;
-    color: #6B3FA0;
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-  .hero .bio {
-    font-size: 1em;
-    color: #666;
-    line-height: 1.7;
-  }
-  .hero .links {
-    margin-top: 24px;
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-  }
-  .hero .links a {
-    color: #6B3FA0;
-    text-decoration: none;
-    font-size: 0.95em;
-    font-weight: 500;
-    padding: 8px 16px;
-    border: 1px solid #6B3FA0;
-    border-radius: 8px;
-    transition: background 0.2s, color 0.2s;
-  }
-  .hero .links a:hover {
-    background: #6B3FA0;
-    color: #fff;
-  }
-  .section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px 60px;
-  }
-  .section h2 {
-    font-size: 1.5em;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 24px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #6B3FA0;
-    display: inline-block;
-  }
-  .projects {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-  .project-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 28px 24px;
-    flex: 1 1 320px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    transition: transform 0.2s;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-  .project-card:hover { transform: translateY(-4px); }
-  .project-card .card-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
-  }
-  .project-card .card-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #007AFF, #5856D6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    color: #fff;
-    flex-shrink: 0;
-  }
-  .project-card .card-header h3 {
-    font-size: 1.15em;
-    color: #222;
-  }
-  .project-card .card-header .tag {
-    font-size: 0.75em;
-    color: #6B3FA0;
-    background: #f3edf9;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-  }
-  .project-card .card-desc {
-    font-size: 0.92em;
-    color: #666;
-    line-height: 1.6;
-  }
-  .project-card .card-links {
-    margin-top: 12px;
-    font-size: 0.85em;
-  }
-  .project-card .card-links a {
-    color: #6B3FA0;
-    text-decoration: none;
-    margin-right: 16px;
-  }
-  .project-card .card-links a:hover { text-decoration: underline; }
-  .footer {
-    border-top: 1px solid #eee;
-    padding: 32px 20px;
-    text-align: center;
-    font-size: 0.85em;
-    color: #aaa;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-  .footer a { color: #6B3FA0; text-decoration: none; }
-  @media (max-width: 600px) {
-    .hero { padding: 48px 20px 32px; }
-    .hero h1 { font-size: 1.7em; }
-    nav .nav-links a { margin-left: 16px; font-size: 0.85em; }
-  }
-</style>
-</head>
-<body>
+  // Handle conditionals: {{#profile.github}}...{{/profile.github}}
+  template = template.replace(/\{\{#(\w+)\.(\w+)\}\}([\s\S]*?)\{\{\/\1\.\2\}\}/g, (match, obj, key, content) => {
+    if (data[obj] && data[obj][key]) {
+      return content;
+    }
+    return '';
+  });
 
-<nav>
-  <a href="/" class="logo">${site.title}</a>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+  // Handle projects loop: {{#projects}}...{{/projects}}
+  template = template.replace(/\{\{#projects\}\}([\s\S]*?)\{\{\/projects\}\}/g, (match, itemTemplate) => {
+    return data.projects.map(project => {
+      let item = itemTemplate;
+      // Replace project variables: {{name}}, {{tag}}, etc.
+      item = item.replace(/\{\{(\w+)\}\}/g, (m, key) => {
+        return project[key] !== undefined ? project[key] : '';
+      });
+      // Handle project conditionals: {{#privacyLink}}...{{/privacyLink}}
+      item = item.replace(/\{\{#(\w+)\}\}([\s\S]*?)\{\{\/\1\}\}/g, (m, key, content) => {
+        return project[key] ? content : '';
+      });
+      return item;
+    }).join('\n');
+  });
 
-<section class="hero" id="about">
-  <h1>${profile.name}</h1>
-  <p class="subtitle">${profile.subtitle}</p>
-  <p class="bio">
-    ${bioHtml}
-  </p>
-  <div class="links">
-    ${profile.github ? `<a href="${profile.github}" target="_blank">GitHub</a>` : ''}
-    <a href="mailto:${profile.email}">Email</a>
-  </div>
-</section>
-
-<section class="section" id="projects">
-  <h2>Projects</h2>
-  <div class="projects">${projectCards}
-  </div>
-</section>
-
-<footer class="footer" id="contact">
-  <p>&copy; ${site.copyright}</p>
-  <p><a href="mailto:${profile.email}">${profile.email}</a></p>
-</footer>
-
-</body>
-</html>
-`;
+  return template;
 }
 
 // --- Git Deploy ---
 
 function deploy() {
   try {
-    execSync('git add data.json index.html', { cwd: __dirname, stdio: 'pipe' });
+    execSync('git add data.json index.html template.html', { cwd: __dirname, stdio: 'pipe' });
     const status = execSync('git status --porcelain', { cwd: __dirname, encoding: 'utf-8' });
     if (!status.trim()) {
       return { success: true, message: '변경사항 없음 - 배포 생략' };
