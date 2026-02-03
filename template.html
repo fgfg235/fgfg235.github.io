@@ -43,8 +43,9 @@
       </div>
       <p class="card-desc">{{description}}</p>
       <div class="card-actions">
-        {{#storeLink}}<a class="store-btn" href="{{storeLink}}" target="_blank">App Store</a>{{/storeLink}}
-        <a class="detail-link" href="{{link}}">자세히</a>
+        {{#appStoreLink}}<a class="store-btn" href="{{appStoreLink}}" target="_blank">App Store</a>{{/appStoreLink}}
+        {{#websiteLink}}<a class="store-btn website-btn" href="{{websiteLink}}" target="_blank">Website</a>{{/websiteLink}}
+        {{#link}}<a class="detail-link" href="{{link}}">자세히</a>{{/link}}
       </div>
     </div>
 {{/projects}}

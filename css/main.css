@@ -144,7 +144,7 @@ nav .nav-links a:hover {
 }
 
 .project-card .card-icon.error {
-  content: none;
+  object-fit: none;
 }
 
 .project-card .card-header h3 {
@@ -188,6 +188,14 @@ nav .nav-links a:hover {
 
 .project-card .store-btn:hover {
   background: #5a3490;
+}
+
+.project-card .store-btn.website-btn {
+  background: #007AFF;
+}
+
+.project-card .store-btn.website-btn:hover {
+  background: #0066DD;
 }
 
 .project-card .detail-link {

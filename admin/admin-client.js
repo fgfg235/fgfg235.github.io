@@ -39,8 +39,10 @@ function renderProjects() {
       <textarea onchange="data.projects[${i}].description=this.value">${p.description}</textarea>
       <label>상세 페이지 경로</label>
       <input type="text" value="${p.link}" onchange="data.projects[${i}].link=this.value" />
-      <label>스토어/웹사이트 링크 (App Store, 웹사이트 URL 등)</label>
-      <input type="url" value="${p.storeLink || ''}" onchange="data.projects[${i}].storeLink=this.value" placeholder="https://apps.apple.com/..." />
+      <label>App Store 링크</label>
+      <input type="url" value="${p.appStoreLink || ''}" onchange="data.projects[${i}].appStoreLink=this.value" placeholder="https://apps.apple.com/..." />
+      <label>Website 링크</label>
+      <input type="url" value="${p.websiteLink || ''}" onchange="data.projects[${i}].websiteLink=this.value" placeholder="https://example.com" />
       <label>개인정보처리방침 경로</label>
       <input type="text" value="${p.privacyLink || ''}" onchange="data.projects[${i}].privacyLink=this.value" />
       <label>이용약관 경로</label>
@@ -58,7 +60,8 @@ function addProject() {
     icon: 'images/',
     description: '',
     link: '',
-    storeLink: '',
+    appStoreLink: '',
+    websiteLink: '',
     privacyLink: '',
     termsLink: ''
   });

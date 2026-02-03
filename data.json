@@ -18,7 +18,8 @@
       "icon": "images/TTC_icon_1024.png",
       "description": "메트로놈 & 박자 연습 도구로서, 음악 연습을 위한 직관적인 리듬 훈련 앱입니다.",
       "link": "tictacgroove/",
-      "storeLink": "",
+      "appStoreLink": "",
+      "websiteLink": "",
       "privacyLink": "tictacgroove/privacy.html",
       "termsLink": "tictacgroove/terms.html"
     },
@@ -29,7 +30,8 @@
       "icon": "images/",
       "description": "(주)해모아DX 회사 홈페이지입니다.\n반응형 기본 여건 충족, SSL 적용, SEO 적용 작업이 진행된 프로젝트 입니다.",
       "link": "",
-      "storeLink": "https://haemoadx.co.kr/",
+      "appStoreLink": "",
+      "websiteLink": "https://haemoadx.co.kr/",
       "privacyLink": "",
       "termsLink": ""
     },
@@ -40,7 +42,8 @@
       "icon": "images/",
       "description": "(주)NOVAMAX 회사 홈페이지입니다.\n반응형 기본 여건 충족, SSL 적용, SEO 적용 작업이 진행된 프로젝트 입니다.",
       "link": "",
-      "storeLink": "https://novamax.co.kr/",
+      "appStoreLink": "",
+      "websiteLink": "https://novamax.co.kr/",
       "privacyLink": "",
       "termsLink": ""
     }
