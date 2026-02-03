@@ -1,0 +1,25 @@
+{
+  "site": {
+    "title": "Weburple",
+    "copyright": "2025 Weburple. All rights reserved."
+  },
+  "profile": {
+    "name": "Kim Geonpyo",
+    "subtitle": "Developer",
+    "bio": "작은 아이디어를 기능으로 구현합니다.\n천천히, 그러나 끝까지 만듭니다.\n\nImplement small ideas into functionalities.\nSlowly, but steadily.",
+    "github": "https://github.com/fgfg235",
+    "email": "fgfg235@gmail.com"
+  },
+  "projects": [
+    {
+      "id": "tictacgroove",
+      "name": "TicTacGroove",
+      "tag": "iOS App",
+      "icon": "🎵",
+      "description": "메트로놈 & 박자 연습 도구. 음악 연습을 위한 직관적인 리듬 훈련 앱입니다.",
+      "link": "tictacgroove/",
+      "privacyLink": "tictacgroove/privacy.html",
+      "termsLink": "tictacgroove/terms.html"
+    }
+  ]
+}
