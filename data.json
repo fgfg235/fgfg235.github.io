@@ -15,7 +15,7 @@
       "id": "tictacgroove",
       "name": "TicTacGroove",
       "tag": "iOS App",
-      "icon": "🎵",
+      "icon": "images/tictacgroove.png",
       "description": "메트로놈 & 박자 연습 도구로서, 음악 연습을 위한 직관적인 리듬 훈련 앱입니다.",
       "link": "tictacgroove/",
       "privacyLink": "tictacgroove/privacy.html",

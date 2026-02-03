@@ -16,6 +16,39 @@ function saveData(data) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2) + '\n', 'utf-8');
 }
 
+// --- Multipart Parser ---
+
+function parseMultipart(buffer, boundary) {
+  const parts = [];
+  const boundaryBuffer = Buffer.from('--' + boundary);
+  let start = buffer.indexOf(boundaryBuffer) + boundaryBuffer.length + 2;
+
+  while (true) {
+    const end = buffer.indexOf(boundaryBuffer, start);
+    if (end === -1) break;
+
+    const part = buffer.slice(start, end - 2);
+    const headerEnd = part.indexOf('\r\n\r\n');
+    const header = part.slice(0, headerEnd).toString();
+    const data = part.slice(headerEnd + 4);
+
+    const nameMatch = header.match(/name="([^"]+)"/);
+    const filenameMatch = header.match(/filename="([^"]+)"/);
+
+    if (nameMatch) {
+      parts.push({
+        name: nameMatch[1],
+        filename: filenameMatch ? filenameMatch[1] : null,
+        data: filenameMatch ? data : data.toString()
+      });
+    }
+
+    start = end + boundaryBuffer.length + 2;
+  }
+
+  return parts;
+}
+
 // --- Template Engine ---
 
 function generateIndexHtml(data) {
@@ -65,7 +98,7 @@ function generateIndexHtml(data) {
 
 function deploy() {
   try {
-    execSync('git add data.json index.html template.html', { cwd: __dirname, stdio: 'pipe' });
+    execSync('git add data.json index.html template.html images/', { cwd: __dirname, stdio: 'pipe' });
     const status = execSync('git status --porcelain', { cwd: __dirname, encoding: 'utf-8' });
     if (!status.trim()) {
       return { success: true, message: '변경사항 없음 - 배포 생략' };
@@ -127,6 +160,12 @@ function getAdminHtml() {
   .toast.error { background: #e74c3c; }
   .toast.info { background: #3498db; }
   .preview-link { display: inline-block; margin-top: 8px; color: #6B3FA0; font-size: 0.9em; }
+  .icon-upload { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+  .icon-upload .icon-preview {
+    width: 48px; height: 48px; border-radius: 10px; object-fit: cover;
+    border: 1px solid #ddd; background: #f5f5f5;
+  }
+  .icon-upload input[type="file"] { flex: 1; }
 </style>
 </head>
 <body>
@@ -206,8 +245,12 @@ function renderProjects() {
       <input type="text" value="\${p.name}" onchange="data.projects[\${i}].name=this.value" />
       <label>태그 (예: iOS App)</label>
       <input type="text" value="\${p.tag}" onchange="data.projects[\${i}].tag=this.value" />
-      <label>아이콘 (이모지)</label>
-      <input type="text" value="\${p.icon}" onchange="data.projects[\${i}].icon=this.value" />
+      <label>아이콘 이미지</label>
+      <div class="icon-upload">
+        <img class="icon-preview" src="\${p.icon}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22/>'">
+        <input type="file" accept="image/*" onchange="uploadIcon(\${i}, this.files[0])" />
+      </div>
+      <input type="text" value="\${p.icon}" onchange="data.projects[\${i}].icon=this.value; renderProjects();" placeholder="또는 경로 직접 입력" style="margin-top:8px" />
       <label>설명</label>
       <textarea onchange="data.projects[\${i}].description=this.value">\${p.description}</textarea>
       <label>링크 경로</label>
@@ -225,7 +268,7 @@ function addProject() {
     id: 'project-' + Date.now(),
     name: '새 프로젝트',
     tag: 'App',
-    icon: '📱',
+    icon: 'images/',
     description: '',
     link: '',
     privacyLink: '',
@@ -238,6 +281,24 @@ function removeProject(i) {
   if (confirm(data.projects[i].name + ' 프로젝트를 삭제할까요?')) {
     data.projects.splice(i, 1);
     renderProjects();
+  }
+}
+
+async function uploadIcon(projectIndex, file) {
+  if (!file) return;
+  const formData = new FormData();
+  formData.append('image', file);
+  formData.append('projectId', data.projects[projectIndex].id);
+
+  const res = await fetch('/api/upload-icon', { method: 'POST', body: formData });
+  const result = await res.json();
+
+  if (result.success) {
+    data.projects[projectIndex].icon = result.path;
+    renderProjects();
+    showToast('아이콘 업로드 완료', 'success');
+  } else {
+    showToast(result.message, 'error');
   }
 }
 
@@ -329,6 +390,39 @@ const server = http.createServer((req, res) => {
         const result = deploy();
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(result));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, message: err.message }));
+      }
+    });
+    return;
+  }
+
+  // API: Upload icon image
+  if (req.method === 'POST' && req.url === '/api/upload-icon') {
+    const chunks = [];
+    req.on('data', chunk => chunks.push(chunk));
+    req.on('end', () => {
+      try {
+        const buffer = Buffer.concat(chunks);
+        const boundary = req.headers['content-type'].split('boundary=')[1];
+        const parts = parseMultipart(buffer, boundary);
+
+        const imagePart = parts.find(p => p.name === 'image');
+        const projectIdPart = parts.find(p => p.name === 'projectId');
+
+        if (!imagePart || !projectIdPart) {
+          throw new Error('Missing image or projectId');
+        }
+
+        const ext = imagePart.filename.split('.').pop().toLowerCase();
+        const filename = projectIdPart.data.toString() + '.' + ext;
+        const filepath = path.join(__dirname, 'images', filename);
+
+        fs.writeFileSync(filepath, imagePart.data);
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, path: 'images/' + filename }));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ success: false, message: err.message }));
