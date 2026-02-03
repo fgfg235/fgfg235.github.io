@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weburple</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fafafa;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero {
+    text-align: center;
+    padding: 80px 20px 40px;
+    max-width: 600px;
+  }
+  .hero h1 {
+    font-size: 2.4em;
+    font-weight: 700;
+    color: #6B3FA0;
+    margin-bottom: 8px;
+  }
+  .hero p {
+    font-size: 1.1em;
+    color: #666;
+    line-height: 1.6;
+  }
+  .apps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    padding: 40px 20px;
+    max-width: 800px;
+  }
+  .app-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .app-card:hover { transform: translateY(-4px); }
+  .app-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #007AFF, #5856D6);
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: #fff;
+  }
+  .app-card h2 { font-size: 1.2em; margin-bottom: 8px; }
+  .app-card p { font-size: 0.9em; color: #888; line-height: 1.5; }
+  .footer {
+    margin-top: auto;
+    padding: 32px 20px;
+    text-align: center;
+    font-size: 0.85em;
+    color: #aaa;
+  }
+  .footer a { color: #6B3FA0; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Weburple</h1>
+  <p>음악과 기술을 연결합니다</p>
+</div>
+
+<div class="apps">
+  <a class="app-card" href="tictacgroove/">
+    <div class="app-icon">🎵</div>
+    <h2>TicTacGroove</h2>
+    <p>메트로놈 & 박자 연습 도구<br>Metronome & Rhythm Practice</p>
+  </a>
+</div>
+
+<div class="footer">
+  <p>&copy; 2025 Weburple. All rights reserved.</p>
+  <p><a href="mailto:weburple@gmail.com">weburple@gmail.com</a></p>
+</div>
+
+</body>
+</html>
