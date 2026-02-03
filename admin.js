@@ -253,8 +253,10 @@ function renderProjects() {
       <input type="text" value="\${p.icon}" onchange="data.projects[\${i}].icon=this.value; renderProjects();" placeholder="또는 경로 직접 입력" style="margin-top:8px" />
       <label>설명</label>
       <textarea onchange="data.projects[\${i}].description=this.value">\${p.description}</textarea>
-      <label>링크 경로</label>
+      <label>상세 페이지 경로</label>
       <input type="text" value="\${p.link}" onchange="data.projects[\${i}].link=this.value" />
+      <label>스토어/웹사이트 링크 (App Store, 웹사이트 URL 등)</label>
+      <input type="url" value="\${p.storeLink || ''}" onchange="data.projects[\${i}].storeLink=this.value" placeholder="https://apps.apple.com/..." />
       <label>개인정보처리방침 경로</label>
       <input type="text" value="\${p.privacyLink || ''}" onchange="data.projects[\${i}].privacyLink=this.value" />
       <label>이용약관 경로</label>
@@ -271,6 +273,7 @@ function addProject() {
     icon: 'images/',
     description: '',
     link: '',
+    storeLink: '',
     privacyLink: '',
     termsLink: ''
   });

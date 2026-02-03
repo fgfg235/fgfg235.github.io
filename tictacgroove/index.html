@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TicTacGroove</title>
+<title>TicTacGroove - Weburple</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -11,14 +11,39 @@
     background: #fafafa;
     color: #333;
     min-height: 100vh;
+  }
+  nav {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 16px 24px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  nav .logo {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #6B3FA0;
+    text-decoration: none;
+  }
+  nav .nav-links a {
+    color: #555;
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 0.95em;
+    font-weight: 500;
+  }
+  nav .nav-links a:hover { color: #6B3FA0; }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
   .header {
     text-align: center;
-    padding: 60px 20px 24px;
-    max-width: 600px;
+    padding: 60px 0 24px;
   }
   .header h1 {
     font-size: 2em;
@@ -35,9 +60,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 32px 20px;
-    max-width: 400px;
-    width: 100%;
+    padding: 32px 0;
   }
   .links a {
     display: block;
@@ -52,42 +75,51 @@
   }
   .links a:hover { transform: translateY(-2px); }
   .links a span { color: #888; font-size: 0.85em; display: block; margin-top: 4px; font-weight: 400; }
-  .back { margin-top: 24px; }
-  .back a { color: #007AFF; text-decoration: none; font-size: 0.9em; }
   .footer {
-    margin-top: auto;
+    border-top: 1px solid #eee;
     padding: 32px 20px;
     text-align: center;
     font-size: 0.85em;
     color: #aaa;
+    max-width: 960px;
+    margin: 60px auto 0;
   }
+  .footer a { color: #6B3FA0; text-decoration: none; }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>TicTacGroove</h1>
-  <p>메트로놈 & 박자 연습 도구<br>Metronome & Rhythm Practice Tool</p>
+<nav>
+  <a href="/" class="logo">Weburple</a>
+  <div class="nav-links">
+    <a href="/#about">About</a>
+    <a href="/#projects">Projects</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="header">
+    <h1>TicTacGroove</h1>
+    <p>메트로놈 & 박자 연습 도구<br>Metronome & Rhythm Practice Tool</p>
+  </div>
+
+  <div class="links">
+    <a href="privacy.html">
+      개인정보 처리방침
+      <span>Privacy Policy</span>
+    </a>
+    <a href="terms.html">
+      이용약관
+      <span>Terms of Use</span>
+    </a>
+  </div>
 </div>
 
-<div class="links">
-  <a href="privacy.html">
-    개인정보 처리방침
-    <span>Privacy Policy</span>
-  </a>
-  <a href="terms.html">
-    이용약관
-    <span>Terms of Use</span>
-  </a>
-</div>
-
-<div class="back">
-  <a href="../">&larr; Weburple</a>
-</div>
-
-<div class="footer">
+<footer class="footer">
   <p>&copy; 2025 Weburple. All rights reserved.</p>
-</div>
+  <p><a href="mailto:fgfg235@gmail.com">fgfg235@gmail.com</a></p>
+</footer>
 
 </body>
 </html>
