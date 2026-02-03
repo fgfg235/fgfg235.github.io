@@ -140,7 +140,7 @@ nav .nav-links a:hover {
   border-radius: 14px;
   flex-shrink: 0;
   object-fit: cover;
-  background: linear-gradient(135deg, #6B3FA0, #007AFF);
+  background: linear-gradient(135deg, #4C1D95, #8B5CF6);
 }
 
 .project-card .card-icon.error {
@@ -177,7 +177,7 @@ nav .nav-links a:hover {
 .project-card .store-btn {
   display: inline-block;
   padding: 10px 20px;
-  background: #6B3FA0;
+  background: #14B8A6;
   color: #fff;
   border-radius: 8px;
   font-size: 0.9em;
@@ -187,15 +187,7 @@ nav .nav-links a:hover {
 }
 
 .project-card .store-btn:hover {
-  background: #5a3490;
-}
-
-.project-card .store-btn.website-btn {
-  background: #007AFF;
-}
-
-.project-card .store-btn.website-btn:hover {
-  background: #0066DD;
+  background: #0D9488;
 }
 
 .project-card .detail-link {
