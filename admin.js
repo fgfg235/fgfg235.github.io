@@ -99,10 +99,16 @@ function generateIndexHtml(data) {
 function deploy() {
   try {
     execSync('git add data.json index.html template.html images/', { cwd: __dirname, stdio: 'pipe' });
-    const status = execSync('git status --porcelain', { cwd: __dirname, encoding: 'utf-8' });
-    if (!status.trim()) {
+
+    // Check if there are staged changes
+    try {
+      execSync('git diff --cached --quiet', { cwd: __dirname, stdio: 'pipe' });
+      // If no error, there are no staged changes
       return { success: true, message: '변경사항 없음 - 배포 생략' };
+    } catch (e) {
+      // If error, there are staged changes - proceed with commit
     }
+
     execSync('git commit -m "Update site content via admin"', { cwd: __dirname, stdio: 'pipe' });
     execSync('git push origin main', { cwd: __dirname, stdio: 'pipe' });
     return { success: true, message: '배포 완료! 1-2분 후 반영됩니다.' };
