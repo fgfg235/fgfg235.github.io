@@ -1,0 +1,128 @@
+/* Page-specific styles for subpages (tictacgroove, etc.) */
+
+/* Container */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Page Header */
+.header {
+  text-align: center;
+  padding: 60px 0 24px;
+}
+
+.header h1 {
+  font-size: 2em;
+  font-weight: 700;
+  color: #007AFF;
+  margin-bottom: 8px;
+}
+
+.header p {
+  font-size: 1em;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Links List */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px 0;
+}
+
+.links a {
+  display: block;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s;
+}
+
+.links a:hover {
+  transform: translateY(-2px);
+}
+
+.links a span {
+  color: #888;
+  font-size: 0.85em;
+  display: block;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* Content (for privacy, terms pages) */
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  line-height: 1.7;
+}
+
+.content h1 {
+  font-size: 1.6em;
+  border-bottom: 2px solid #007AFF;
+  padding-bottom: 8px;
+}
+
+.content h2 {
+  font-size: 1.2em;
+  margin-top: 28px;
+  color: #007AFF;
+}
+
+.content p,
+.content li {
+  font-size: 0.95em;
+}
+
+/* Language Toggle */
+.lang-toggle {
+  text-align: right;
+  margin-bottom: 16px;
+}
+
+.lang-toggle a {
+  color: #007AFF;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Language Sections */
+.ko,
+.en {
+  display: none;
+}
+
+.ko.active,
+.en.active {
+  display: block;
+}
+
+/* Date */
+.date {
+  color: #888;
+  font-size: 0.85em;
+}
+
+/* Back Link */
+.back {
+  margin-top: 32px;
+}
+
+.back a {
+  color: #007AFF;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.back a:hover {
+  text-decoration: underline;
+}
