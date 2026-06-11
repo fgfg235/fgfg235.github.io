@@ -1,45 +1,69 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TicTacGroove - Weburple</title>
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+  <title>Weburple</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/page.css">
 </head>
 <body>
 
 <nav>
-  <a href="/" class="logo">Weburple</a>
-  <div class="nav-links">
-    <a href="/#about">About</a>
-    <a href="/#projects">Projects</a>
-    <a href="/#contact">Contact</a>
+  <div class="nav-inner">
+    <a href="/" class="logo"><img src="/images/weburple_logo.png" alt="Weburple"></a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="/#about"><span class="lang-ko">소개</span><span class="lang-en">About</span></a>
+        <a href="/#projects"><span class="lang-ko">프로젝트</span><span class="lang-en">Projects</span></a>
+        <a href="/#contact"><span class="lang-ko">연락처</span><span class="lang-en">Contact</span></a>
+      </div>
+      <div class="lang-toggle">
+        <button id="btn-ko" class="active" onclick="switchLang('ko')">KO</button>
+        <button id="btn-en" onclick="switchLang('en')">EN</button>
+      </div>
+    </div>
   </div>
 </nav>
 
 <div class="container">
   <div class="header">
     <h1>TicTacGroove</h1>
-    <p>메트로놈 & 박자 연습 도구<br>Metronome & Rhythm Practice Tool</p>
+    <p>
+      <span class="lang-ko">메트로놈 & 박자 연습 도구</span>
+      <span class="lang-en">Metronome & Rhythm Practice Tool</span>
+    </p>
   </div>
 
   <div class="links">
     <a href="privacy.html">
-      개인정보 처리방침
-      <span>Privacy Policy</span>
+      <span class="lang-ko">개인정보 처리방침</span>
+      <span class="lang-en">Privacy Policy</span>
     </a>
     <a href="terms.html">
-      이용약관
-      <span>Terms of Use</span>
+      <span class="lang-ko">이용약관</span>
+      <span class="lang-en">Terms of Use</span>
     </a>
   </div>
 </div>
 
-<footer class="footer">
+<footer>
   <p>&copy; 2025 Weburple. All rights reserved.</p>
   <p><a href="mailto:fgfg235@gmail.com">fgfg235@gmail.com</a></p>
 </footer>
+
+<script>
+  function switchLang(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    localStorage.setItem('weburple-lang', lang);
+  }
+
+  var savedLang = localStorage.getItem('weburple-lang');
+  if (savedLang) switchLang(savedLang);
+</script>
 
 </body>
 </html>

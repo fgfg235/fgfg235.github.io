@@ -16,13 +16,13 @@
 .header h1 {
   font-size: 2em;
   font-weight: 700;
-  color: #6B3FA0;
+  color: #2a234f;
   margin-bottom: 8px;
 }
 
 .header p {
   font-size: 1em;
-  color: #666;
+  color: var(--text-secondary, #6e6e73);
   line-height: 1.6;
 }
 
@@ -36,11 +36,11 @@
 
 .links a {
   display: block;
-  background: #fff;
+  background: var(--surface, #fff);
   border-radius: 12px;
   padding: 16px 20px;
   text-decoration: none;
-  color: #333;
+  color: var(--text, #1d1d1f);
   font-weight: 500;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
   transition: transform 0.15s;
@@ -51,7 +51,7 @@
 }
 
 .links a span {
-  color: #888;
+  color: var(--text-secondary, #6e6e73);
   font-size: 0.85em;
   display: block;
   margin-top: 4px;
@@ -68,14 +68,14 @@
 
 .content h1 {
   font-size: 1.6em;
-  border-bottom: 2px solid #6B3FA0;
+  border-bottom: 2px solid #2a234f;
   padding-bottom: 8px;
 }
 
 .content h2 {
   font-size: 1.2em;
   margin-top: 28px;
-  color: #6B3FA0;
+  color: #2a234f;
 }
 
 .content p,
@@ -83,19 +83,22 @@
   font-size: 0.95em;
 }
 
-/* Language Toggle */
-.lang-toggle {
+/* Language Toggle (for privacy/terms pages - class-based) */
+.content .lang-toggle {
   text-align: right;
   margin-bottom: 16px;
+  background: none;
+  border-radius: 0;
+  padding: 0;
 }
 
-.lang-toggle a {
-  color: #6B3FA0;
+.content .lang-toggle a {
+  color: #2a234f;
   text-decoration: none;
   font-weight: 600;
 }
 
-/* Language Sections */
+/* Language Sections (privacy/terms class-based toggle) */
 .ko,
 .en {
   display: none;
@@ -108,7 +111,7 @@
 
 /* Date */
 .date {
-  color: #888;
+  color: var(--text-secondary, #6e6e73);
   font-size: 0.85em;
 }
 
@@ -118,7 +121,7 @@
 }
 
 .back a {
-  color: #6B3FA0;
+  color: #2a234f;
   text-decoration: none;
   font-size: 0.9em;
 }

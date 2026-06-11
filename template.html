@@ -1,61 +1,135 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Weburple — 일상에서 마주치는 불편함을 코드로 푸는, 기타 치는 개발자의 1인 작업실.">
+  <meta property="og:title" content="{{site.title}}">
+  <meta property="og:description" content="일상에서 마주치는 불편함을 코드로 푸는, 기타 치는 개발자의 1인 작업실.">
+  <meta property="og:type" content="website">
   <title>{{site.title}}</title>
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 
 <nav>
-  <a href="/" class="logo">{{site.title}}</a>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-inner">
+    <a href="/" class="logo"><img src="/images/weburple_logo.png" alt="Weburple"></a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#about"><span class="lang-ko">소개</span><span class="lang-en">About</span></a>
+        <a href="#projects"><span class="lang-ko">작업</span><span class="lang-en">Work</span></a>
+        <a href="#contact"><span class="lang-ko">연락처</span><span class="lang-en">Contact</span></a>
+      </div>
+      <div class="lang-toggle">
+        <button id="btn-ko" class="active" onclick="switchLang('ko')">KO</button>
+        <button id="btn-en" onclick="switchLang('en')">EN</button>
+      </div>
+    </div>
   </div>
 </nav>
 
-<section class="hero" id="about">
-  <h1>{{profile.name}}</h1>
-  <p class="subtitle">{{profile.subtitle}}</p>
-  <p class="bio">
-    {{profile.bio}}
-  </p>
-  <div class="links">
-    {{#profile.github}}<a href="{{profile.github}}" target="_blank">GitHub</a>{{/profile.github}}
-    <a href="mailto:{{profile.email}}">Email</a>
+<section id="hero">
+  <div class="hero-inner">
+    <p class="hero-label hero-animate"><span class="beat-dot" aria-hidden="true"></span>{{hero.subtitle}}</p>
+    <h1 class="hero-headline hero-animate">{{hero.tagline}}</h1>
+    <p class="hero-intro hero-animate">{{hero.intro}}</p>
+    <p class="hero-bpm hero-animate">♩ = 80&ensp;<span class="lang-ko">— 오늘도 연습 중</span><span class="lang-en">— still practicing</span></p>
   </div>
 </section>
 
-<section class="section" id="projects">
-  <h2>Projects</h2>
-  <div class="projects">
-{{#projects}}
-    <div class="project-card">
-      <div class="card-header">
-        <img class="card-icon" src="{{icon}}" alt="{{name}}" onerror="this.classList.add('error'); this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'">
-        <div>
-          <h3>{{name}}</h3>
-          <span class="tag">{{tag}}</span>
-        </div>
-      </div>
-      <p class="card-desc">{{description}}</p>
-      <div class="card-actions">
-        {{#appStoreLink}}<a class="store-btn" href="{{appStoreLink}}" target="_blank">App Store</a>{{/appStoreLink}}
-        {{#websiteLink}}<a class="store-btn website-btn" href="{{websiteLink}}" target="_blank">Website</a>{{/websiteLink}}
-        {{#link}}<a class="detail-link" href="{{link}}">자세히</a>{{/link}}
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 600 60" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 27v6M30 23v14M50 19v22M70 25v10M90 16v28M110 22v16M130 12v36M150 24v12M170 18v24M190 26v8M210 21v18M230 14v32M250 25v10M270 19v22M290 26v8M310 15v30M330 23v14M350 27v6M370 20v20M390 12v36M410 24v12M430 17v26M450 26v8M470 21v18M490 27v6M510 18v24M530 25v10M550 23v14M570 27v6M590 26v8" />
+  </svg>
+</div>
+
+<section id="about" class="section fade-in">
+  <p class="section-label">{{about.title}}</p>
+  <h2 class="story-headline">{{story.headline}}</h2>
+  <p class="story-p">{{story.name}}</p>
+  <p class="story-p">{{about.bio}}</p>
+  <p class="story-p">{{story.music}}</p>
+  <div class="story-footer">
+    <aside class="now-card">
+      <p class="now-title">{{now.title}}</p>
+      <ul>
+        <li>{{now.line1}}</li>
+        <li>{{now.line2}}</li>
+        <li>{{now.line3}}</li>
+      </ul>
+    </aside>
+    <div class="about-side">
+      <p class="about-name">{{about.name}}</p>
+      <div class="about-links">
+        {{#about.github}}<a href="{{about.github}}" target="_blank">GitHub</a>{{/about.github}}
+        {{#about.email}}<a href="mailto:{{about.email}}">Email</a>{{/about.email}}
       </div>
     </div>
-{{/projects}}
   </div>
 </section>
 
-<footer class="footer" id="contact">
+<section id="projects" class="section fade-in">
+  <p class="section-label"><span class="lang-ko">작업</span><span class="lang-en">Work</span></p>
+  <h2 class="section-title"><span class="lang-ko">만든 것, 만드는 것</span><span class="lang-en">Made &amp; making</span></h2>
+  <div class="project-list">
+    {{#projects}}
+    <article class="project-entry">
+      <div class="entry-meta">
+        {{#icon}}<img class="entry-icon" src="{{icon}}" alt="">{{/icon}}
+        <div class="entry-title">
+          <h3>{{name}}</h3>
+          <p class="entry-tags"><span class="entry-platform">{{tag}}</span><span class="entry-status">{{status}}</span></p>
+        </div>
+      </div>
+      {{#quote}}<blockquote class="entry-quote">{{quote}}</blockquote>{{/quote}}
+      <p class="entry-desc">{{description}}</p>
+      <div class="entry-actions">
+        {{#appStoreLink}}<a class="btn-primary" href="{{appStoreLink}}" target="_blank">App Store</a>{{/appStoreLink}}
+        {{#websiteLink}}<a class="btn-primary" href="{{websiteLink}}" target="_blank">Website</a>{{/websiteLink}}
+        {{#link}}<a class="detail-link" href="{{link}}"><span class="lang-ko">자세히 →</span><span class="lang-en">Details →</span></a>{{/link}}
+      </div>
+    </article>
+    {{/projects}}
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-inner">
+    <h2 class="section-title">{{contact.title}}</h2>
+    <p class="contact-message">{{contact.message}}</p>
+    {{#about.email}}<a class="contact-email" href="mailto:{{about.email}}">{{about.email}}</a>{{/about.email}}
+  </div>
+</section>
+
+<footer>
   <p>&copy; {{site.copyright}}</p>
-  <p><a href="mailto:{{profile.email}}">{{profile.email}}</a></p>
+  <p class="footer-note"><span class="lang-ko">보라색을 좋아하는 개발자가 만들고 운영합니다.</span><span class="lang-en">Built and run by a developer who likes purple.</span></p>
 </footer>
+
+<script>
+  function switchLang(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    localStorage.setItem('weburple-lang', lang);
+  }
+
+  var savedLang = localStorage.getItem('weburple-lang');
+  if (savedLang) switchLang(savedLang);
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+</script>
 
 </body>
 </html>

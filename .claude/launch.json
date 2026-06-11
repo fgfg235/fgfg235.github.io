@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "weburple",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["admin.js"],
+      "port": 3000
+    }
+  ]
+}

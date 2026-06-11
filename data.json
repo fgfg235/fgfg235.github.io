@@ -1,51 +1,138 @@
 {
   "site": {
     "title": "Weburple",
-    "copyright": "2025 Weburple. All rights reserved."
+    "copyright": "2025–2026 Weburple"
   },
-  "profile": {
+  "hero": {
+    "subtitle": {
+      "ko": "기타 치는 개발자의 작업실",
+      "en": "A guitar-playing developer's workshop"
+    },
+    "tagline": {
+      "ko": "연습하다 답답해서,<br>직접 만들기 시작했습니다;",
+      "en": "I kept getting frustrated mid-practice,<br>so I started building things myself;"
+    },
+    "intro": {
+      "ko": "일상에서 마주치는 불편함을 코드로 푸는 1인 작업실, Weburple입니다.",
+      "en": "Weburple is a one-person workshop that turns everyday frictions into software."
+    }
+  },
+  "about": {
+    "title": {
+      "ko": "소개",
+      "en": "About"
+    },
     "name": "Kim Geonpyo",
-    "subtitle": "Developer",
-    "bio": "작은 아이디어를 기능으로 구현합니다.\n천천히, 그러나 끝까지 만듭니다.\n\nImplement small ideas into functionalities.\nSlowly, but steadily.",
+    "bio": {
+      "ko": "중학교 때 '내가 만든 프로그램이 누군가에게 도움이 됐으면 좋겠다'는 생각 하나로 개발자가 되기로 했고, 그 마음으로 20년째 코드를 쓰고 있습니다.\n기타는 개발 스트레스를 풀려고 잡았다가, 15년째 손에서 놓지 못하고 있습니다.",
+      "en": "Back in middle school, I decided to become a developer for one simple reason — I wanted something I built to actually help someone. Twenty years later, I still write code with that in mind.\nI picked up the guitar to shake off the stress of it. That was fifteen years ago, and it never left my hands."
+    },
     "github": "https://github.com/fgfg235",
     "email": "fgfg235@gmail.com"
+  },
+  "story": {
+    "headline": {
+      "ko": "보라색을 좋아하는, 기타 치는 개발자입니다.",
+      "en": "A developer who plays guitar and likes purple."
+    },
+    "name": {
+      "ko": "Weburple은 원래 web과 application을 합쳐 지으려던 이름입니다. 그런데 좋아하는 보라색을 꼭 끼워 넣고 싶었고, 마침 purple에 '예술적인'이라는 뜻도 있다는 걸 알게 됐죠. 그렇게 web + purple이 됐습니다. 소리 내어 읽으면 '웹어플'처럼 들리는 건, 의도된 우연이고요.",
+      "en": "Weburple was originally going to be a mash-up of 'web' and 'application'. But I wanted my favorite color in there — and it turns out purple can also mean 'artistic'. So: web + purple. The fact that it sounds like 'web app' when you say it out loud is a happy accident. Mostly intended."
+    },
+    "music": {
+      "ko": "음악은 잘하고 싶은 취미이자, 평생 가져갈 취미입니다. 보컬로 시작해서 기타로 넘어왔고, 메탈과 코어를 듣다가 블루스를 거쳐 요즘은 재즈에 한참 머물러 있습니다. 취향은 계속 흘러가는데, '더 잘 치고 싶다'는 마음만은 그대로입니다.",
+      "en": "Music is the hobby I want to be good at — the one I'm keeping for life. I started out singing, drifted to the guitar, and my ears went from metal and hardcore through blues to where they've been parked lately: jazz. The taste keeps moving; the wish to play better stays put."
+    }
+  },
+  "now": {
+    "title": {
+      "ko": "요즘의 작업실",
+      "en": "In the workshop lately"
+    },
+    "line1": {
+      "ko": "듣는 것 — 재즈",
+      "en": "Listening — jazz"
+    },
+    "line2": {
+      "ko": "치는 것 — 기타, 15년째",
+      "en": "Playing — guitar, year fifteen"
+    },
+    "line3": {
+      "ko": "만드는 것 — 기타 노트, 비데맨",
+      "en": "Building — Guitar Note & Bideman"
+    }
   },
   "projects": [
     {
       "id": "tictacgroove",
       "name": "TicTacGroove",
-      "tag": "iOS App",
+      "tag": "iOS",
+      "status": {
+        "ko": "출시됨",
+        "en": "Shipped"
+      },
       "icon": "images/TTC_icon_1024.png",
-      "description": "메트로놈 & 박자 연습 도구로서, 음악 연습을 위한 직관적인 리듬 훈련 앱입니다.",
+      "quote": {
+        "ko": "메트로놈에 맞춰 연습은 하는데, 내가 정확한지 빠른지 느린지는 어떻게 알지?",
+        "en": "I can practice along with a metronome — but how do I know if I'm spot on, rushing, or dragging?"
+      },
+      "description": {
+        "ko": "그 질문에서 시작한 리듬 연습 앱입니다. 한동안은 DAW에 기타를 연결해 녹음하고, 파형을 들여다보며 박자를 확인했는데 — 그 과정이 너무 귀찮아서 연습 자체를 멀리하게 되더라고요. 그래서 만들었습니다. 박자를 들려주는 데서 멈추지 않고, 내 박자가 어디에 떨어지는지 보여주는 메트로놈입니다.",
+        "en": "A rhythm practice app that started with that question. For a while I'd plug my guitar into a DAW, record, and squint at waveforms to check my timing — tedious enough that I started avoiding practice altogether. So I built this instead: a metronome that doesn't just play the beat, but shows you where yours actually lands."
+      },
       "link": "tictacgroove/",
-      "appStoreLink": "",
+      "appStoreLink": "https://apps.apple.com/kr/app/tictacgroove/id6758643711",
       "websiteLink": "",
       "privacyLink": "tictacgroove/privacy.html",
       "termsLink": "tictacgroove/terms.html"
     },
     {
-      "id": "project-1770105040521",
-      "name": "(주)해모아DX 회사 홈페이지 제작",
-      "tag": "Wordpress",
-      "icon": "images/",
-      "description": "(주)해모아DX 회사 홈페이지입니다.\n반응형 기본 여건 충족, SSL 적용, SEO 적용 작업이 진행된 프로젝트 입니다.",
+      "id": "guitar-note",
+      "name": "기타 노트",
+      "tag": "Apple ecosystem",
+      "status": {
+        "ko": "만드는 중",
+        "en": "In the works"
+      },
+      "icon": "",
+      "description": {
+        "ko": "음악 노트와 사보 프로그램을 하나로 합친 앱입니다. 연습하다 떠오른 프레이즈를 적어두는 노트와, 그걸 악보로 옮기는 도구가 따로 놀지 않았으면 해서 만들고 있습니다.",
+        "en": "A music notebook and a notation tool, combined into one. The phrase you jot down mid-practice and the score it eventually becomes shouldn't live in separate apps — so I'm building one where they don't."
+      },
       "link": "",
       "appStoreLink": "",
-      "websiteLink": "https://haemoadx.co.kr/",
+      "websiteLink": "",
       "privacyLink": "",
       "termsLink": ""
     },
     {
-      "id": "project-1770105260668",
-      "name": "(주)NOVAMAX 홈페이지 제작",
-      "tag": "Wordpress",
-      "icon": "images/",
-      "description": "(주)NOVAMAX 회사 홈페이지입니다.\n반응형 기본 여건 충족, SSL 적용, SEO 적용 작업이 진행된 프로젝트 입니다.",
+      "id": "bideman",
+      "name": "비데맨",
+      "tag": "iOS · Android",
+      "status": {
+        "ko": "출시 준비 중",
+        "en": "Almost ready"
+      },
+      "icon": "",
+      "description": {
+        "ko": "작업실이 늘 진지할 필요는 없으니까 — 뜬금없지만, 게임도 만듭니다. Flutter로 만든 캐주얼 게임이고, 지금 출시를 앞두고 있습니다.",
+        "en": "A workshop doesn't have to be serious all the time — so, out of nowhere, a game. A casual game built with Flutter, just about ready to ship."
+      },
       "link": "",
       "appStoreLink": "",
-      "websiteLink": "https://novamax.co.kr/",
+      "websiteLink": "",
       "privacyLink": "",
       "termsLink": ""
     }
-  ]
+  ],
+  "contact": {
+    "title": {
+      "ko": "연락처",
+      "en": "Contact"
+    },
+    "message": {
+      "ko": "만든 것에 대한 의견도, 협업 제안도, 그냥 음악 이야기도 좋습니다. 보내주신 메일은 전부 읽고, 답장합니다.",
+      "en": "Thoughts on what I've built, collaboration ideas, or just music talk — all welcome. I read every email, and I reply."
+    }
+  }
 }
