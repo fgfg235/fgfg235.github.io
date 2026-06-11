@@ -12,7 +12,7 @@ body {
 
 /* Header */
 .header {
-  background: #6B3FA0;
+  background: #2a234f;
   color: #fff;
   padding: 16px 24px;
   display: flex;
@@ -25,14 +25,14 @@ body {
 }
 
 .header a {
-  color: #fff;
+  color: #ffb3c3;
   text-decoration: none;
-  opacity: 0.8;
   font-size: 0.9em;
+  transition: opacity 0.2s;
 }
 
 .header a:hover {
-  opacity: 1;
+  opacity: 0.8;
 }
 
 /* Container */
@@ -53,7 +53,7 @@ body {
 
 .card h2 {
   font-size: 1.1em;
-  color: #6B3FA0;
+  color: #2a234f;
   margin-bottom: 16px;
 }
 
@@ -87,12 +87,30 @@ textarea {
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: #6B3FA0;
+  border-color: #2a234f;
 }
 
 textarea {
   resize: vertical;
   min-height: 80px;
+}
+
+/* Bilingual Group */
+.bilingual-group {
+  margin-top: 8px;
+  padding: 12px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.bilingual-group label {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.bilingual-group label:first-child {
+  margin-top: 0;
 }
 
 /* Project Item */
@@ -154,12 +172,12 @@ textarea {
 }
 
 .btn-primary {
-  background: #6B3FA0;
+  background: #2a234f;
   color: #fff;
 }
 
 .btn-primary:hover {
-  background: #5a3490;
+  background: #1e1a3a;
 }
 
 .btn-secondary {
@@ -215,12 +233,4 @@ textarea {
 
 .toast.info {
   background: #3498db;
-}
-
-/* Utility */
-.preview-link {
-  display: inline-block;
-  margin-top: 8px;
-  color: #6B3FA0;
-  font-size: 0.9em;
 }

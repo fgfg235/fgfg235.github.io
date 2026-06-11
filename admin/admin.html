@@ -25,23 +25,57 @@
     </div>
 
     <div class="card">
-      <h2>프로필</h2>
+      <h2>히어로</h2>
+      <div class="bilingual-group">
+        <label>부제 (KO)</label>
+        <input type="text" id="heroSubtitleKo">
+        <label>부제 (EN)</label>
+        <input type="text" id="heroSubtitleEn">
+      </div>
+      <div class="bilingual-group">
+        <label>태그라인 (KO)</label>
+        <input type="text" id="heroTaglineKo">
+        <label>태그라인 (EN)</label>
+        <input type="text" id="heroTaglineEn">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>소개</h2>
       <label>이름</label>
-      <input type="text" id="profileName">
-      <label>직함 / 한줄 소개</label>
-      <input type="text" id="profileSubtitle">
-      <label>자기소개 (줄바꿈 가능)</label>
-      <textarea id="profileBio" rows="4"></textarea>
+      <input type="text" id="aboutName">
+      <div class="bilingual-group">
+        <label>자기소개 (KO)</label>
+        <textarea id="aboutBioKo" rows="3"></textarea>
+        <label>자기소개 (EN)</label>
+        <textarea id="aboutBioEn" rows="3"></textarea>
+      </div>
       <label>GitHub URL</label>
-      <input type="url" id="profileGithub">
+      <input type="url" id="aboutGithub">
       <label>이메일</label>
-      <input type="email" id="profileEmail">
+      <input type="email" id="aboutEmail">
     </div>
 
     <div class="card">
       <h2>프로젝트</h2>
       <div id="projectList"></div>
       <button type="button" class="btn btn-secondary" onclick="addProject()">+ 프로젝트 추가</button>
+    </div>
+
+    <div class="card">
+      <h2>연락처</h2>
+      <div class="bilingual-group">
+        <label>섹션 제목 (KO)</label>
+        <input type="text" id="contactTitleKo">
+        <label>섹션 제목 (EN)</label>
+        <input type="text" id="contactTitleEn">
+      </div>
+      <div class="bilingual-group">
+        <label>메시지 (KO)</label>
+        <textarea id="contactMessageKo" rows="2"></textarea>
+        <label>메시지 (EN)</label>
+        <textarea id="contactMessageEn" rows="2"></textarea>
+      </div>
     </div>
 
     <div class="actions">

@@ -49,28 +49,44 @@ function parseMultipart(buffer, boundary) {
   return parts;
 }
 
+// --- Bilingual Helper ---
+
+function renderBilingual(value, isBio) {
+  if (typeof value === 'object' && value !== null && value.ko !== undefined) {
+    let ko = value.ko;
+    let en = value.en;
+    if (isBio) {
+      ko = ko.split('\n').join('<br>\n    ');
+      en = en.split('\n').join('<br>\n    ');
+    }
+    return `<span class="lang-ko">${ko}</span><span class="lang-en">${en}</span>`;
+  }
+  if (isBio && typeof value === 'string') {
+    return value.split('\n').join('<br>\n    ');
+  }
+  return value;
+}
+
 // --- Template Engine ---
 
 function generateIndexHtml(data) {
   let template = fs.readFileSync(TEMPLATE_FILE, 'utf-8');
 
-  // Replace simple variables: {{site.title}}, {{profile.name}}, etc.
+  // Replace simple variables: {{site.title}}, {{about.name}}, etc.
   template = template.replace(/\{\{(\w+)\.(\w+)\}\}/g, (match, obj, key) => {
     if (data[obj] && data[obj][key] !== undefined) {
-      let value = data[obj][key];
-      // Convert newlines to <br> for bio
-      if (obj === 'profile' && key === 'bio') {
-        value = value.split('\n').join('<br>\n    ');
-      }
-      return value;
+      const value = data[obj][key];
+      const isBio = (obj === 'about' && key === 'bio');
+      return renderBilingual(value, isBio);
     }
     return '';
   });
 
-  // Handle conditionals: {{#profile.github}}...{{/profile.github}}
+  // Handle conditionals: {{#about.github}}...{{/about.github}}
   template = template.replace(/\{\{#(\w+)\.(\w+)\}\}([\s\S]*?)\{\{\/\1\.\2\}\}/g, (match, obj, key, content) => {
     if (data[obj] && data[obj][key]) {
-      return content;
+      // Replace the value reference inside conditional
+      return content.replace(/\{\{\1\.\2\}\}/g, data[obj][key]);
     }
     return '';
   });
@@ -79,11 +95,13 @@ function generateIndexHtml(data) {
   template = template.replace(/\{\{#projects\}\}([\s\S]*?)\{\{\/projects\}\}/g, (match, itemTemplate) => {
     return data.projects.map(project => {
       let item = itemTemplate;
-      // Replace project variables: {{name}}, {{tag}}, etc.
+      // Replace project variables: {{name}}, {{tag}}, {{description}}, etc.
       item = item.replace(/\{\{(\w+)\}\}/g, (m, key) => {
-        return project[key] !== undefined ? project[key] : '';
+        if (project[key] === undefined) return '';
+        const isBio = (key === 'description');
+        return renderBilingual(project[key], false);
       });
-      // Handle project conditionals: {{#privacyLink}}...{{/privacyLink}}
+      // Handle project conditionals: {{#link}}...{{/link}}
       item = item.replace(/\{\{#(\w+)\}\}([\s\S]*?)\{\{\/\1\}\}/g, (m, key, content) => {
         return project[key] ? content : '';
       });
@@ -98,15 +116,14 @@ function generateIndexHtml(data) {
 
 function deploy() {
   try {
-    execSync('git add data.json index.html template.html images/', { cwd: __dirname, stdio: 'pipe' });
+    execSync('git add data.json index.html template.html images/ css/', { cwd: __dirname, stdio: 'pipe' });
 
     // Check if there are staged changes
     try {
       execSync('git diff --cached --quiet', { cwd: __dirname, stdio: 'pipe' });
-      // If no error, there are no staged changes
       return { success: true, message: '변경사항 없음 - 배포 생략' };
     } catch (e) {
-      // If error, there are staged changes - proceed with commit
+      // Staged changes exist - proceed
     }
 
     execSync('git commit -m "Update site content via admin"', { cwd: __dirname, stdio: 'pipe' });
@@ -216,7 +233,6 @@ const server = http.createServer((req, res) => {
 
   fs.readFile(filePath, (err, content) => {
     if (err) {
-      // Try with index.html for directories
       filePath = path.join(filePath, 'index.html');
       fs.readFile(filePath, (err2, content2) => {
         if (err2) {
